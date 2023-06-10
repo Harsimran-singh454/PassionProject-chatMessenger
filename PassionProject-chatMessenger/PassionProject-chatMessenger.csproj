@@ -182,8 +182,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\GroupsDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\MessageDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,15 +195,25 @@
     <Compile Include="Migrations\202306051549598_InitialCreate.designer.cs">
       <DependentUpon>202306051549598_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306051627187_Messages.cs" />
-    <Compile Include="Migrations\202306051627187_Messages.designer.cs">
-      <DependentUpon>202306051627187_Messages.cs</DependentUpon>
+    <Compile Include="Migrations\202306051936417_group.cs" />
+    <Compile Include="Migrations\202306051936417_group.designer.cs">
+      <DependentUpon>202306051936417_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306051945511_message1.cs" />
+    <Compile Include="Migrations\202306051945511_message1.designer.cs">
+      <DependentUpon>202306051945511_message1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306091645468_message_dtn.cs" />
+    <Compile Include="Migrations\202306091645468_message_dtn.designer.cs">
+      <DependentUpon>202306091645468_message_dtn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\UsersXGroups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -214,6 +228,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="jsonData\addMessage.json" />
+    <Content Include="jsonData\addGroup.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -259,6 +275,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Message\Chat.cshtml" />
+    <Content Include="Views\Group\List.cshtml" />
+    <Content Include="Views\Message\index.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,8 +300,14 @@
     <EmbeddedResource Include="Migrations\202306051549598_InitialCreate.resx">
       <DependentUpon>202306051549598_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306051627187_Messages.resx">
-      <DependentUpon>202306051627187_Messages.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306051936417_group.resx">
+      <DependentUpon>202306051936417_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306051945511_message1.resx">
+      <DependentUpon>202306051945511_message1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306091645468_message_dtn.resx">
+      <DependentUpon>202306091645468_message_dtn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

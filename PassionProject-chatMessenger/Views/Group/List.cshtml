@@ -1,0 +1,11 @@
+﻿@model IEnumerable<PassionProject_chatMessenger.Models.Group>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Groups</h2>
+
+@foreach(var group in Model){
+    <h2> <a href="/Group/Details/@group.GroupId">@group.GroupName</a> </h2>
+}
+

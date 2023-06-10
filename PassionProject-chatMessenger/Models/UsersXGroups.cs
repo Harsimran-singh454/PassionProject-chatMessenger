@@ -7,23 +7,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PassionProject_chatMessenger.Models
 {
-    public class Message
+    public class UsersXGroups
     {
-        [Key]
-        public int MessageId { get; set; }
-        public string Content { get; set; }
-
+        public int UsersXGroupsId { get; set; }
 
         public int UserId { get; set; }
+        //public AspNetUser User { get; set; }
 
-
-        // a message can belong to one group
-        // Single group can have many messages
         [ForeignKey("Group")]
         public int GroupId { get; set; }
         public virtual Group Group { get; set; }
-
-        public DateTime Timestamp { get; set; }
     }
-
 }

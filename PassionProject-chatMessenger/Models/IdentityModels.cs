@@ -25,6 +25,10 @@ namespace PassionProject_chatMessenger.Models
         {
         }
 
+        public DbSet<Message> Messages { get; set; }
+
+        public DbSet<Group> Groups { get; set; }
+        
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

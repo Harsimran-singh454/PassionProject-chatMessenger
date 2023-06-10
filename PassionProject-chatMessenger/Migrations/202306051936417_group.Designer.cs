@@ -7,13 +7,13 @@ namespace PassionProject_chatMessenger.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Messages : IMigrationMetadata
+    public sealed partial class group : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Messages));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(group));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306051627187_Messages"; }
+            get { return "202306051936417_group"; }
         }
         
         string IMigrationMetadata.Source
