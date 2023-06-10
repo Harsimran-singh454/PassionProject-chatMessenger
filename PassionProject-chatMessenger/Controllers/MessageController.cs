@@ -14,15 +14,13 @@ namespace PassionProject_chatMessenger.Controllers
         public ActionResult List()
         {
             // Retrieve list of animals from MessageData Api
-            //curl-https://localhost:44325/api/MessageData/listMessages
+            //curl https://localhost:44325/api/MessageData/listMessages
 
             HttpClient client = new HttpClient();
 
             string url = "https://localhost:44325/api/MessageData/listMessages";
-            HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("Response Code:");
-            Debug.WriteLine(response.StatusCode);
+            HttpResponseMessage response = client.GetAsync(url).Result;
 
             return View();
         }

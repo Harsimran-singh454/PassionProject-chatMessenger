@@ -277,8 +277,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Message\Chat.cshtml" />
     <Content Include="Views\Group\List.cshtml" />
-    <Content Include="Views\Message\index.cshtml" />
+    <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Message\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

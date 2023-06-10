@@ -17,10 +17,21 @@ namespace PassionProject_chatMessenger.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/MessageData/listMessages
-        public IQueryable<Message> listMessages()
+        public IEnumerable<MessageDto> List()
         {
-            return db.Messages;
+            List<Message> messages = db.Messages.ToList();
+            List<MessageDto> MessageDtos = new List<MessageDto>();
+
+            messages.ForEach(a => MessageDtos.Add(new MessageDto()
+            {
+                MessageId = a.MessageId,
+                Content = a.Content,
+                GroupName = a.Group.GroupName,
+            }));
+
+            return MessageDtos;
         }
+
 
         // GET: api/MessageData/findMessage/5
         [ResponseType(typeof(Message))]
