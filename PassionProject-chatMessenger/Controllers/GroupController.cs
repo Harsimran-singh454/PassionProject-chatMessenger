@@ -11,43 +11,38 @@ namespace PassionProject_chatMessenger.Controllers
 {
     public class GroupController : Controller
     {
+        private static readonly HttpClient client;
+        static GroupController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44325/api/GroupsData/");
+        }
         // GET: Group
         public ActionResult List()
         {
 
-            // Retrieve list of animals from MessageData Api
+            // Retrieve list of animals from GroupsData Api
             //curl-https://localhost:44325/api/GroupsData/ListGroups
 
-            HttpClient client = new HttpClient();
-
-            string url = "https://localhost:44325/api/GroupsData/ListGroups";
+            string url = "ListGroups";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("Response Code:");
-            Debug.WriteLine(response.StatusCode);
-
             IEnumerable<Group> groups = response.Content.ReadAsAsync<IEnumerable<Group>>().Result;
-            Debug.WriteLine("Number of groups");
-            Debug.WriteLine(groups.Count());
+
             return View(groups);
         }
 
         // GET: Group/Details/5
         public ActionResult Details(int id)
         {
-            // Retrieve details of one group using MessageData Api
+            // Retrieve details of one group using GroupsData Api
             //curl-https://localhost:44325/api/GroupsData/FindGroup/{id}
 
-            HttpClient client = new HttpClient();
-            string url = "https://localhost:44325/api/GroupsData/FindGroup/"+id;
+            string url = "FindGroup/"+id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Debug.WriteLine("Response Code:");
-            Debug.WriteLine(response.StatusCode);
-
             Group SelectedGroup = response.Content.ReadAsAsync<Group>().Result;
-            Debug.WriteLine("Number of groups");
-            Debug.WriteLine(SelectedGroup.GroupName);
+
             return View(SelectedGroup);
         }
 
@@ -57,9 +52,9 @@ namespace PassionProject_chatMessenger.Controllers
             return View();
         }
 
-        // POST: Group/Create
+        // POST: Group/CreateGroup/{forData}
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateGroup(FormCollection collection)
         {
             try
             {

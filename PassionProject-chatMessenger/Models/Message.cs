@@ -26,7 +26,7 @@ namespace PassionProject_chatMessenger.Models
         public DateTime Timestamp { get; set; }
     }
 
-    class MessageDto
+    public class MessageDto
     {
         public int MessageId { get; set; }
         public string Content { get; set; }
