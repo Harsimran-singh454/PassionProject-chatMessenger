@@ -20,10 +20,12 @@ namespace PassionProject_chatMessenger.Controllers
 
         // GET: api/GroupsData/ListGroups
         [HttpGet]
+        [ResponseType(typeof(GroupDto))]
         public IEnumerable<GroupDto> ListGroups()
         {
             List<Group> Groups = db.Groups.ToList();
             List<GroupDto> GroupDtos = new List<GroupDto>();
+          
 
             Groups.ForEach(g => GroupDtos.Add(new GroupDto()
             {

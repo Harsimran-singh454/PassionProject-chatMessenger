@@ -211,6 +211,10 @@
     <Compile Include="Migrations\202306140659492_groups.designer.cs">
       <DependentUpon>202306140659492_groups.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306141848053_groups1.cs" />
+    <Compile Include="Migrations\202306141848053_groups1.designer.cs">
+      <DependentUpon>202306141848053_groups1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Group.cs" />
@@ -315,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306140659492_groups.resx">
       <DependentUpon>202306140659492_groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306141848053_groups1.resx">
+      <DependentUpon>202306141848053_groups1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
