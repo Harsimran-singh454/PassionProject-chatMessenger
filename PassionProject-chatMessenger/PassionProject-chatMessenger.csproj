@@ -195,10 +195,6 @@
     <Compile Include="Migrations\202306051549598_InitialCreate.designer.cs">
       <DependentUpon>202306051549598_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306051936417_group.cs" />
-    <Compile Include="Migrations\202306051936417_group.designer.cs">
-      <DependentUpon>202306051936417_group.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202306051945511_message1.cs" />
     <Compile Include="Migrations\202306051945511_message1.designer.cs">
       <DependentUpon>202306051945511_message1.cs</DependentUpon>
@@ -207,13 +203,20 @@
     <Compile Include="Migrations\202306091645468_message_dtn.designer.cs">
       <DependentUpon>202306091645468_message_dtn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306140610400_update_message_table.cs" />
+    <Compile Include="Migrations\202306140610400_update_message_table.designer.cs">
+      <DependentUpon>202306140610400_update_message_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306140659492_groups.cs" />
+    <Compile Include="Migrations\202306140659492_groups.designer.cs">
+      <DependentUpon>202306140659492_groups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\UsersXGroups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -301,14 +304,17 @@
     <EmbeddedResource Include="Migrations\202306051549598_InitialCreate.resx">
       <DependentUpon>202306051549598_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306051936417_group.resx">
-      <DependentUpon>202306051936417_group.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306051945511_message1.resx">
       <DependentUpon>202306051945511_message1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306091645468_message_dtn.resx">
       <DependentUpon>202306091645468_message_dtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306140610400_update_message_table.resx">
+      <DependentUpon>202306140610400_update_message_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306140659492_groups.resx">
+      <DependentUpon>202306140659492_groups.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

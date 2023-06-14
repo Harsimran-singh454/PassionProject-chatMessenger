@@ -17,26 +17,49 @@ namespace PassionProject_chatMessenger.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
         // GET: api/GroupsData/ListGroups
         [HttpGet]
-        public IQueryable<Group> ListGroups()
+        public IEnumerable<GroupDto> ListGroups()
         {
-            return db.Groups;
+            List<Group> Groups = db.Groups.ToList();
+            List<GroupDto> GroupDtos = new List<GroupDto>();
+
+            Groups.ForEach(g => GroupDtos.Add(new GroupDto()
+            {
+                Id = g.Id,
+                GroupName = g.GroupName,
+            }));
+
+            return GroupDtos;
         }
+
+
+
+
 
         // GET: api/GroupsData/FindGroup/5
         [ResponseType(typeof(Group))]
         [HttpGet]
         public IHttpActionResult FindGroup(int id)
         {
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            Group Group = db.Groups.Find(id);
+            GroupDto GroupDto = new GroupDto()
+            {
+                Id = Group.Id,
+                GroupName = Group.GroupName,
+            };
+            if (Group == null)
             {
                 return NotFound();
             }
 
-            return Ok(group);
+            return Ok(GroupDto);
         }
+
+
+
+
 
         // PUT: api/GroupsData/UpdateGroup/5
         [ResponseType(typeof(void))]
@@ -47,7 +70,7 @@ namespace PassionProject_chatMessenger.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != group.GroupId)
+            if (id != group.Id)
             {
                 return BadRequest();
             }
@@ -85,7 +108,7 @@ namespace PassionProject_chatMessenger.Controllers
             db.Groups.Add(group);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = group.GroupId }, group);
+            return CreatedAtRoute("DefaultApi", new { id = group.Id }, group);
         }
 
         // DELETE: api/GroupsData/DeleteGroup/5
@@ -115,7 +138,7 @@ namespace PassionProject_chatMessenger.Controllers
 
         private bool GroupExists(int id)
         {
-            return db.Groups.Count(e => e.GroupId == id) > 0;
+            return db.Groups.Count(e => e.Id == id) > 0;
         }
     }
 }

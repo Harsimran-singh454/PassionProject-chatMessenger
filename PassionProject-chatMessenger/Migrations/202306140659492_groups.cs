@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class group : DbMigration
+    public partial class groups : DbMigration
     {
         public override void Up()
         {
@@ -11,10 +11,10 @@
                 "dbo.Groups",
                 c => new
                 {
-                    GroupId = c.Int(nullable: false, identity: true),
+                    Id = c.Int(nullable: false, identity: true),
                     GroupName = c.String(),
                 })
-                .PrimaryKey(t => t.GroupId);
+                .PrimaryKey(t => t.Id);
 
         }
 
@@ -23,3 +23,4 @@
         }
     }
 }
+

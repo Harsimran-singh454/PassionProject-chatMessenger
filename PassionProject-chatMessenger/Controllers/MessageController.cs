@@ -1,34 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Http;
 using System.Diagnostics;
+using System.Web.Script.Serialization;
+using PassionProject_chatMessenger.Models;
 
 namespace PassionProject_chatMessenger.Controllers
 {
     public class MessageController : Controller
+
     {
+
+        private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
+
+        static MessageController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44325/api/MessageData/");
+        }
+
         // GET: Message
         public ActionResult List()
         {
-            // Retrieve list of animals from MessageData Api
-            //curl https://localhost:44325/api/MessageData/listMessages
-
-            HttpClient client = new HttpClient();
-
-            string url = "https://localhost:44325/api/MessageData/listMessages";
-
+            string url = "listMessages";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            return View();
+            IEnumerable<MessageDto> messages = response.Content.ReadAsAsync<IEnumerable<MessageDto>>().Result;
+ 
+            return View(messages);
         }
 
         // GET: Message/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            string url = "FindMessage/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            MessageDto selectedMessage = response.Content.ReadAsAsync<MessageDto>().Result;
+
+            Debug.WriteLine("Message Details : ");
+            Debug.WriteLine(selectedMessage.Content);
+
+
+            return View(selectedMessage);
         }
 
         // GET: Message/Create
@@ -38,19 +55,36 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Message/Create
+    
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Message animal)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("the json payload is :");
 
-                return RedirectToAction("Index");
-            }
-            catch
+            //objective: add a new message into our system using API
+            //curl -H "Content-Type:application/json" -d @animal.json https://localhost:44324/api/MessageData/addMessage 
+
+            string url = "addMessage";
+
+
+            string jsonpayload = jss.Serialize(animal);
+
+            Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
             }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
+
         }
 
         // GET: Message/Edit/5

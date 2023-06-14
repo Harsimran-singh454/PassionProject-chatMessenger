@@ -17,33 +17,47 @@ namespace PassionProject_chatMessenger.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/MessageData/listMessages
+        [HttpGet]
         public IEnumerable<MessageDto> List()
         {
             List<Message> messages = db.Messages.ToList();
             List<MessageDto> MessageDtos = new List<MessageDto>();
 
-            messages.ForEach(a => MessageDtos.Add(new MessageDto()
+            messages.ForEach(m => MessageDtos.Add(new MessageDto()
             {
-                MessageId = a.MessageId,
-                Content = a.Content,
-                GroupName = a.Group.GroupName,
+                MessageId = m.MessageId,
+                user1 =m.user1,
+                user2 =m.user2,
+                Content = m.Content,
+                GroupId = m.GroupId,
+                GroupName = m.Group.GroupName,
             }));
 
             return MessageDtos;
         }
 
 
-        // GET: api/MessageData/findMessage/5
+        // GET: api/MessageData/FindMessage/5
         [ResponseType(typeof(Message))]
-        public IHttpActionResult findMessage(int id)
+        [HttpGet]
+        public IHttpActionResult FindMessage(int id)
         {
-            Message message = db.Messages.Find(id);
-            if (message == null)
+            Message Message = db.Messages.Find(id);
+            MessageDto MessageDto = new MessageDto()
+            {
+                MessageId = Message.MessageId,
+                user1 = Message.user1,
+                user2 = Message.user2,
+                Content = Message.Content,
+                GroupId = Message.GroupId,
+                GroupName = Message.Group.GroupName,
+            };
+            if (Message == null)
             {
                 return NotFound();
             }
 
-            return Ok(message);
+            return Ok(MessageDto);
         }
 
 

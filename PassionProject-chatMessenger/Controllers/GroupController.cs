@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace PassionProject_chatMessenger.Controllers
 {
     public class GroupController : Controller
     {
         private static readonly HttpClient client;
+        private JavaScriptSerializer jss = new JavaScriptSerializer();
         static GroupController()
         {
             client = new HttpClient();
