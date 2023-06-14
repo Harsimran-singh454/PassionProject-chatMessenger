@@ -16,7 +16,7 @@ namespace PassionProject_chatMessenger.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/MessageData/listMessages
+        // GET: api/MessageData/List
         [HttpGet]
         [ResponseType(typeof(GroupDto))]
         public IEnumerable<MessageDto> List()
@@ -30,7 +30,7 @@ namespace PassionProject_chatMessenger.Controllers
                 user1 =m.user1,
                 user2 =m.user2,
                 Content = m.Content,
-                GroupId = m.GroupId,
+                GroupId = m.Id,
                 GroupName = m.Group.GroupName,
             }));
 
@@ -50,7 +50,7 @@ namespace PassionProject_chatMessenger.Controllers
                 user1 = Message.user1,
                 user2 = Message.user2,
                 Content = Message.Content,
-                GroupId = Message.GroupId,
+                GroupId = Message.Id,
                 GroupName = Message.Group.GroupName,
             };
             if (Message == null)

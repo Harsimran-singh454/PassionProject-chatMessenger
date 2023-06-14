@@ -13,7 +13,7 @@ namespace PassionProject_chatMessenger.Models
         public int MessageId { get; set; }
         public string Content { get; set; }
 
-        //[ForeignKey("ApplicationUser")]
+       // [ForeignKey("ApplicationUser")]
         public int user1 { get; set; }
        // public virtual ApplicationUser ApplicationUser1 { get; set; }        
         
@@ -25,9 +25,8 @@ namespace PassionProject_chatMessenger.Models
         // a message can belong to one group
         // Single group can have many messages
         [ForeignKey("Group")]
-        public int GroupId { get; set; }
+        public int Id { get; set; }
         public virtual Group Group { get; set; }
-
         public DateTime Timestamp { get; set; }
     }
 
@@ -36,10 +35,10 @@ namespace PassionProject_chatMessenger.Models
         public int MessageId { get; set; }
 
         public int user1 { get; set; }
-        public string user_1_Name { get; set; }
+        //public string user1_Name { get; set; }
 
         public int user2 { get; set; }
-        public string User_2_Name { get; set; }
+       // public string User2_Name { get; set; }
 
         public string Content { get; set; }
         public int GroupId { get; set; }
