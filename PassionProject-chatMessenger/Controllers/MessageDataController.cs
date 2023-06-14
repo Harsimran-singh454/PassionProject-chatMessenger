@@ -18,6 +18,7 @@ namespace PassionProject_chatMessenger.Controllers
 
         // GET: api/MessageData/listMessages
         [HttpGet]
+        [ResponseType(typeof(GroupDto))]
         public IEnumerable<MessageDto> List()
         {
             List<Message> messages = db.Messages.ToList();

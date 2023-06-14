@@ -1,7 +1,11 @@
-﻿
+﻿@model IEnumerable<PassionProject_chatMessenger.Models.Message>
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "List";
 }
 
-<h2>index</h2>
+<h2>Messages</h2>
 
+@foreach (var message in Model)
+{
+    <h2> <a href="/Message/Details/@message.MessageId">@message.content</a> </h2>
+}
