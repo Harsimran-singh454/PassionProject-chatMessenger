@@ -291,6 +291,8 @@
     <Content Include="Views\Message\List.cshtml" />
     <Content Include="Views\Group\Details.cshtml" />
     <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Group\Error.cshtml" />
+    <Content Include="Views\Message\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -56,19 +56,40 @@ namespace PassionProject_chatMessenger.Controllers
 
         // POST: Group/CreateGroup/{forData}
         [HttpPost]
-        public ActionResult CreateGroup(FormCollection collection)
+        public ActionResult Create(Group group)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            Debug.WriteLine("the json payload is :");
 
-                return RedirectToAction("Index");
-            }
-            catch
+            //objective: add a new group using the API
+            //curl -H "Content-Type:application/json" -d @addGroup.json https://localhost:44324/api/GroupData/AddGroup 
+
+            string url = "GroupData/AddGroup";
+
+
+            string jsonpayload = jss.Serialize(group);
+            //Debug.WriteLine(jsonpayload);
+
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
+
+        public ActionResult Error()
+        {
+
+            return View();
+        }
+
+
 
         // GET: Group/Edit/5
         public ActionResult Edit(int id)

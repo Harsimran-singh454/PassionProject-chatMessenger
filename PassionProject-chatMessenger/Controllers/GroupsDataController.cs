@@ -98,7 +98,7 @@ namespace PassionProject_chatMessenger.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/GroupsData
+        // POST: api/GroupsData/AddGroup
         [ResponseType(typeof(Group))]
         public IHttpActionResult AddGroup(Group group)
         {

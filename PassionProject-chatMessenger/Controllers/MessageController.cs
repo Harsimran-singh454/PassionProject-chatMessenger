@@ -26,7 +26,7 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Message
         public ActionResult List()
         {
-            string url = "listMessages";
+            string url = "List";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             IEnumerable<MessageDto> messages = response.Content.ReadAsAsync<IEnumerable<MessageDto>>().Result;
@@ -55,21 +55,20 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Message/Create
-    
+
         [HttpPost]
-        public ActionResult Create(Message animal)
+        public ActionResult Create(Message message)
         {
             Debug.WriteLine("the json payload is :");
 
-            //objective: add a new message into our system using API
-            //curl -H "Content-Type:application/json" -d @animal.json https://localhost:44324/api/MessageData/addMessage 
+            //objective: add a new message using the API
+            //curl -H "Content-Type:application/json" -d @addMessage.json https://localhost:44324/api/MessageData/addMessage 
 
-            string url = "addMessage";
+            string url = "MessageData/addMessage";
 
 
-            string jsonpayload = jss.Serialize(animal);
-
-            Debug.WriteLine(jsonpayload);
+            string jsonpayload = jss.Serialize(message);
+            //Debug.WriteLine(jsonpayload);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -83,8 +82,12 @@ namespace PassionProject_chatMessenger.Controllers
             {
                 return RedirectToAction("Error");
             }
+        }
 
+        public ActionResult Error()
+        {
 
+            return View();
         }
 
         // GET: Message/Edit/5
