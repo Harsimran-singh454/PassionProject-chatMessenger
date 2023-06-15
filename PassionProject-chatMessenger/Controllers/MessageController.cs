@@ -93,22 +93,28 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Message/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            string url = "FindMessage/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            GroupDto groupSeleted = response.Content.ReadAsAsync<GroupDto>().Result;
+            return View(groupSeleted);
         }
 
         // POST: Message/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Message message)
         {
-            try
+            string url = "updateMessage/" + id;
+            string jsonpayload = jss.Serialize(message);
+            HttpContent content = new StringContent(jsonpayload);
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+            if (response.IsSuccessStatusCode)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("List");
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
 
