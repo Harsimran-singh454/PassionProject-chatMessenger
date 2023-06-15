@@ -293,6 +293,7 @@
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Group\Error.cshtml" />
     <Content Include="Views\Message\Error.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
