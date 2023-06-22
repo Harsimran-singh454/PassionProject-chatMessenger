@@ -56,7 +56,7 @@ namespace PassionProject_chatMessenger.Controllers
 
         // POST: Group/CreateGroup/{forData}
         [HttpPost]
-        public ActionResult Create(Group group)
+        public ActionResult CreateGroup(Group group)
         {
             Debug.WriteLine("the json payload is :");
 
@@ -94,7 +94,11 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Group/Edit/5
         public ActionResult Edit(int id)
         {
-  
+
+            //objective: Update a group using the API
+            //curl -H "Content-Type:application/json" -d @updateGroup.json https://localhost:44324/api/GroupData/FindGroup/{id}
+
+
             string url = "GroupsData/FindGroup/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             GroupDto groupSeleted = response.Content.ReadAsAsync<GroupDto>().Result;
@@ -122,22 +126,30 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Group/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            string url = "GroupsData/FindGroup/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            GroupDto SelectedGroup = response.Content.ReadAsAsync<GroupDto>().Result;
+
+            return View(SelectedGroup);
         }
 
-        // POST: Group/Delete/5
+        // POST: Group/DeleteConfirm/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirm(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "GroupsData/DeleteGroup/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

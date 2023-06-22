@@ -1,0 +1,16 @@
+﻿@model PassionProject_chatMessenger.Models.MessageDto
+@{
+    ViewBag.Title = "Delete Message";
+}
+
+<h2>Delete Message</h2>
+
+
+<div>
+    <p>Are you Sure you want to delete this Message? </p>
+    <form action="/Message/DeleteConfirm/@Model.MessageId" method="post">
+        <input type="hidden" name="GroupId" value="@Model.GroupId" />
+        <input type="submit" name="name" value="Yes" />
+    </form>
+    <a href="/Group/Details/@Model.GroupId">No</a>
+</div>

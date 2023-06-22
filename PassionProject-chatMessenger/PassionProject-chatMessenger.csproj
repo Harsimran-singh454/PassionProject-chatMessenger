@@ -227,6 +227,14 @@
     <Compile Include="Migrations\202306201918266_message-user-int-to-string.designer.cs">
       <DependentUpon>202306201918266_message-user-int-to-string.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306221533307_group.cs" />
+    <Compile Include="Migrations\202306221533307_group.designer.cs">
+      <DependentUpon>202306221533307_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306221535292_group1.cs" />
+    <Compile Include="Migrations\202306221535292_group1.designer.cs">
+      <DependentUpon>202306221535292_group1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Group.cs" />
@@ -302,6 +310,10 @@
     <Content Include="Views\Message\Create.cshtml" />
     <Content Include="Views\Group\Error.cshtml" />
     <Content Include="Views\Message\Error.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Message\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +358,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306201918266_message-user-int-to-string.resx">
       <DependentUpon>202306201918266_message-user-int-to-string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306221533307_group.resx">
+      <DependentUpon>202306221533307_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306221535292_group1.resx">
+      <DependentUpon>202306221535292_group1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

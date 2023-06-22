@@ -57,7 +57,7 @@ namespace PassionProject_chatMessenger.Controllers
         // POST: Message/Create
 
         [HttpPost]
-        public ActionResult Create(Message message)
+        public ActionResult Create(Models.Message message)
         {
             Debug.WriteLine("the json payload is :");
 
@@ -76,7 +76,9 @@ namespace PassionProject_chatMessenger.Controllers
             HttpResponseMessage response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Group", new { 
+                    id = message.Id
+                });
             }
             else
             {
@@ -121,12 +123,20 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Message/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            string url = "MessageData/FindMessage/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            MessageDto selectedMessage = response.Content.ReadAsAsync<MessageDto>().Result;
+
+            Debug.WriteLine("Message Details : ");
+            Debug.WriteLine(selectedMessage.Content);
+
+
+            return View(selectedMessage);
         }
 
         // POST: Message/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult DeleteConfirm(int id, int GroupId)
         {
             string url = "MessageData/DeleteMessage/" + id;
             HttpContent content = new StringContent("");
@@ -135,7 +145,10 @@ namespace PassionProject_chatMessenger.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Group", new
+                {
+                    id = GroupId
+                });
             }
             else
             {

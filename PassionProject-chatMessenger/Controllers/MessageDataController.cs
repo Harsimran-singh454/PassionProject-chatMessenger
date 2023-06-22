@@ -38,6 +38,26 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
 
+
+        // GET: api/MessageData/ListMessagesForGroup/{group id}
+        [HttpGet]
+        public IHttpActionResult ListMessagesForGroup(int id)
+        {
+            List<Message> Messages = db.Messages.Where(a => a.Id == id).ToList();
+            List<MessageDto> MessageDtos = new List<MessageDto>();
+
+            Messages.ForEach(a => MessageDtos.Add(new MessageDto()
+            {
+                MessageId = a.MessageId,
+                Content = a.Content,
+                GroupId = a.Group.Id,
+                GroupName = a.Group.GroupName
+            }));
+
+            return Ok(MessageDtos);
+        }
+
+
         // GET: api/MessageData/FindMessage/5
         [ResponseType(typeof(Message))]
         [HttpGet]

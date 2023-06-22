@@ -6,12 +6,14 @@
 <h2>Group Info</h2>
 
 <h3>@Model.GroupName</h3>
+<a href="/Group/Edit/@Model.Id">Update</a>
+<a href="/Group/Delete/@Model.Id" class="btn-danger">Delete</a>
 
 <div style=" padding: 2em; display:flex; flex-direction:column; justify-items:center;">
 
     @foreach (var msg in Model.Messages)
     {
-        <h4> <a href="/Message/Details/@msg.MessageId">@msg.Content</a> </h4>
+        <h4>@msg.Content - <a style="color:red; font-size:10px;" href="/Message/Delete/@msg.MessageId"> Delete</a></h4> 
     }
 
     <form action="/Message/Create" method="post">

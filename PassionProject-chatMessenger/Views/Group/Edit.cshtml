@@ -1,0 +1,12 @@
+﻿@model PassionProject_chatMessenger.Models.GroupDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form action="https://localhost:44325/Group/Update/@Model.Id" method="post">
+    <label for="GroupName">Name: </label>
+    <input type="text" name="GroupName" value="@Model.GroupName" />
+    <input type="submit" name="submit" value="Update" />
+</form>

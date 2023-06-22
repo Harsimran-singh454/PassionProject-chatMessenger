@@ -120,6 +120,7 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // DELETE: api/GroupsData/DeleteGroup/5
+        [HttpPost]
         [ResponseType(typeof(Group))]
         public IHttpActionResult DeleteGroup(int id)
         {
