@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using PassionProject_chatMessenger.Models;
 using System.Diagnostics;
+using PassionProject_chatMessenger.Migrations;
 
 namespace PassionProject_chatMessenger.Controllers
 {
@@ -25,12 +26,13 @@ namespace PassionProject_chatMessenger.Controllers
         {
             List<Group> Groups = db.Groups.ToList();
             List<GroupDto> GroupDtos = new List<GroupDto>();
-          
+            List<Message> MessageList = new List<Message>();
 
             Groups.ForEach(g => GroupDtos.Add(new GroupDto()
             {
                 Id = g.Id,
                 GroupName = g.GroupName,
+                Messages = MessageList
             }));
 
             return GroupDtos;
@@ -46,10 +48,13 @@ namespace PassionProject_chatMessenger.Controllers
         public IHttpActionResult FindGroup(int id)
         {
             Group Group = db.Groups.Find(id);
+            List<Message> msgs = db.Messages.Where(x => x.Id == id).ToList();
             GroupDto GroupDto = new GroupDto()
             {
                 Id = Group.Id,
                 GroupName = Group.GroupName,
+                Messages = msgs
+
             };
             if (Group == null)
             {
@@ -99,6 +104,7 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: api/GroupsData/AddGroup
+        [HttpPost]
         [ResponseType(typeof(Group))]
         public IHttpActionResult AddGroup(Group group)
         {

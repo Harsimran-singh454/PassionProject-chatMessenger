@@ -20,7 +20,7 @@ namespace PassionProject_chatMessenger.Controllers
         static MessageController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44325/api/MessageData/");
+            client.BaseAddress = new Uri("https://localhost:44325/api/");
         }
 
         // GET: Message
@@ -37,7 +37,7 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Message/Details/5
         public ActionResult Details(int id)
         {
-            string url = "FindMessage/" + id;
+            string url = "MessageData/FindMessage/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             MessageDto selectedMessage = response.Content.ReadAsAsync<MessageDto>().Result;
 
@@ -93,7 +93,7 @@ namespace PassionProject_chatMessenger.Controllers
         // GET: Message/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "FindMessage/" + id;
+            string url = "MessageData/FindMessage/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             GroupDto groupSeleted = response.Content.ReadAsAsync<GroupDto>().Result;
             return View(groupSeleted);
@@ -103,7 +103,7 @@ namespace PassionProject_chatMessenger.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Message message)
         {
-            string url = "updateMessage/" + id;
+            string url = "MessageData/updateMessage/" + id;
             string jsonpayload = jss.Serialize(message);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -128,15 +128,18 @@ namespace PassionProject_chatMessenger.Controllers
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "MessageData/DeleteMessage/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

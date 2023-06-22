@@ -14,11 +14,11 @@ namespace PassionProject_chatMessenger.Models
         public string Content { get; set; }
 
        // [ForeignKey("ApplicationUser")]
-        public int user1 { get; set; }
+        public string user1 { get; set; }
        // public virtual ApplicationUser ApplicationUser1 { get; set; }        
         
         //[ForeignKey("ApplicationUser")]
-        public int user2 { get; set; }
+        public string user2 { get; set; }
         //public virtual ApplicationUser ApplicationUser2 { get; set; }
 
 

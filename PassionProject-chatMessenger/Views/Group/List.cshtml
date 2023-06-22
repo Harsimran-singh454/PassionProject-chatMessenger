@@ -1,9 +1,12 @@
-﻿@model IEnumerable<PassionProject_chatMessenger.Models.Group>
+﻿@model IEnumerable<PassionProject_chatMessenger.Models.GroupDto>
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List of Groups</h2>
+<nav>
+    @Html.ActionLink("Add Group", "Create", "Group", new { area = "" }, new { @class = "btn btn-primary" })
+</nav>
 
 @foreach(var group in Model){
     <h2> <a href="/Group/Details/@group.Id">@group.GroupName</a> </h2>

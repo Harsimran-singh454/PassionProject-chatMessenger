@@ -1,4 +1,4 @@
-﻿@model PassionProject_chatMessenger.Models.Group
+﻿@model PassionProject_chatMessenger.Models.GroupDto
 @{
     ViewBag.Title = "Details";
 }
@@ -6,3 +6,23 @@
 <h2>Group Info</h2>
 
 <h3>@Model.GroupName</h3>
+
+<div style=" padding: 2em; display:flex; flex-direction:column; justify-items:center;">
+
+    @foreach (var msg in Model.Messages)
+    {
+        <h4> <a href="/Message/Details/@msg.MessageId">@msg.Content</a> </h4>
+    }
+
+    <form action="/Message/Create" method="post">
+        <fieldset>
+            <input type="text" name="Content" placeholder="type your message here.." />
+            <input type="hidden" name="user1" value="user1" />
+            <input type="hidden" name="user1" value="user2" />
+            <input type="hidden" name="Timestamp" value="2020/02/02" />
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="submit" value="Send" />
+        </fieldset>
+    </form>
+
+</div>

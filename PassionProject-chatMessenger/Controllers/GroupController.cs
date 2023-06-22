@@ -17,7 +17,7 @@ namespace PassionProject_chatMessenger.Controllers
         static GroupController()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44325/api/GroupsData/");
+            client.BaseAddress = new Uri("https://localhost:44325/api/");
         }
         // GET: Group
         public ActionResult List()
@@ -26,10 +26,10 @@ namespace PassionProject_chatMessenger.Controllers
             // Retrieve list of animals from GroupsData Api
             //curl-https://localhost:44325/api/GroupsData/ListGroups
 
-            string url = "ListGroups";
+            string url = "GroupsData/ListGroups";
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            IEnumerable<Group> groups = response.Content.ReadAsAsync<IEnumerable<Group>>().Result;
+            IEnumerable<GroupDto> groups = response.Content.ReadAsAsync<IEnumerable<GroupDto>>().Result;
 
             return View(groups);
         }
@@ -40,10 +40,10 @@ namespace PassionProject_chatMessenger.Controllers
             // Retrieve details of one group using GroupsData Api
             //curl-https://localhost:44325/api/GroupsData/FindGroup/{id}
 
-            string url = "FindGroup/"+id;
+            string url = "GroupsData/FindGroup/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            Group SelectedGroup = response.Content.ReadAsAsync<Group>().Result;
+            GroupDto SelectedGroup = response.Content.ReadAsAsync<GroupDto>().Result;
 
             return View(SelectedGroup);
         }
@@ -63,7 +63,7 @@ namespace PassionProject_chatMessenger.Controllers
             //objective: add a new group using the API
             //curl -H "Content-Type:application/json" -d @addGroup.json https://localhost:44324/api/GroupData/AddGroup 
 
-            string url = "GroupData/AddGroup";
+            string url = "GroupsData/AddGroup";
 
 
             string jsonpayload = jss.Serialize(group);
@@ -95,7 +95,7 @@ namespace PassionProject_chatMessenger.Controllers
         public ActionResult Edit(int id)
         {
   
-            string url = "GroupData/FindGroup/" + id;
+            string url = "GroupsData/FindGroup/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             GroupDto groupSeleted = response.Content.ReadAsAsync<GroupDto>().Result;
             return View(groupSeleted);
@@ -105,7 +105,7 @@ namespace PassionProject_chatMessenger.Controllers
         [HttpPost]
         public ActionResult Update(int id, Group group)
         {
-            string url = "UpdateGroup/" + id;
+            string url = "GroupsData/UpdateGroup/" + id;
             string jsonpayload = jss.Serialize(group);
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";

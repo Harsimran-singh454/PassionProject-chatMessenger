@@ -10,7 +10,8 @@ namespace PassionProject_chatMessenger.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("List", "Group");
+            //return View();
         }
 
         public ActionResult About()

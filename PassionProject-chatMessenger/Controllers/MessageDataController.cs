@@ -27,8 +27,8 @@ namespace PassionProject_chatMessenger.Controllers
             messages.ForEach(m => MessageDtos.Add(new MessageDto()
             {
                 MessageId = m.MessageId,
-                user1 =m.user1,
-                user2 =m.user2,
+                //user1 =m.user1,
+                //user2 =m.user2,
                 Content = m.Content,
                 GroupId = m.Id,
                 GroupName = m.Group.GroupName,
@@ -47,8 +47,8 @@ namespace PassionProject_chatMessenger.Controllers
             MessageDto MessageDto = new MessageDto()
             {
                 MessageId = Message.MessageId,
-                user1 = Message.user1,
-                user2 = Message.user2,
+                //user1 = Message.user1,
+                //user2 = Message.user2,
                 Content = Message.Content,
                 GroupId = Message.Id,
                 GroupName = Message.Group.GroupName,
