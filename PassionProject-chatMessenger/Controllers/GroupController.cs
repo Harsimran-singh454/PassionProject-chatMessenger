@@ -14,12 +14,21 @@ namespace PassionProject_chatMessenger.Controllers
     {
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
+        /// <summary>
+        /// Constructor
+        /// </summary>
         static GroupController()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44325/api/");
         }
-        // GET: Group
+
+
+        // GET: Group/List
+        /// <summary>
+        /// This method returns a view with list of groups
+        /// </summary>
+        /// <returns>Return a veiw with list of groups</returns>
         public ActionResult List()
         {
 
@@ -35,6 +44,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Group/Details/5
+        /// <summary>
+        /// This method is for seeing details of a group
+        /// </summary>
+        /// <param name="id">target GrouupId</param>
+        /// <returns>Returns a view with group Data</returns>
         public ActionResult Details(int id)
         {
             // Retrieve details of one group using GroupsData Api
@@ -49,12 +63,21 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Group/Create
+        /// <summary>
+        /// This function returns a view with create form
+        /// </summary>
+        /// <returns>Returns a view with create group form</returns>
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Group/CreateGroup/{forData}
+        /// <summary>
+        /// This method calls api to create new group in the database
+        /// </summary>
+        /// <param name="group"></param>
+        /// <returns>Returns list of groups with new group</returns>
         [HttpPost]
         public ActionResult CreateGroup(Group group)
         {
@@ -92,6 +115,12 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // GET: Group/Edit/5
+        /// <summary>
+        /// This function is for finding a group and returning a view with update form
+        /// </summary>
+        /// <param name="id">target group Id</param>
+        /// <returns>Returns a view with update form</returns>
+        [Authorize]
         public ActionResult Edit(int id)
         {
 
@@ -106,6 +135,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Group/Update/5
+        /// <summary>
+        /// This method calls api to update a group in the database
+        /// </summary>
+        /// <param name="id">target group id</param>
+        /// <param name="group">Form data</param>
+        /// <returns>Return list of groups with updated target group</returns>
         [HttpPost]
         public ActionResult Update(int id, Group group)
         {
@@ -124,6 +159,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Group/Delete/5
+        /// <summary>
+        /// This methods returns view with target group details to delete it 
+        /// </summary>
+        /// <param name="id">target group id</param>
+        /// <returns>returns a delete view with group id</returns>
+        [Authorize]
         public ActionResult Delete(int id)
         {
             string url = "GroupsData/FindGroup/" + id;
@@ -135,6 +176,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Group/DeleteConfirm/5
+        /// <summary>
+        /// This method calls api to delete a group from the database
+        /// </summary>
+        /// <param name="id">target group id</param>
+        /// <param name="collection"></param>
+        /// <returns>Return list of groups with one less group</returns>
         [HttpPost]
         public ActionResult DeleteConfirm(int id, FormCollection collection)
         {

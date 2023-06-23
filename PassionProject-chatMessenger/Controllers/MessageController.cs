@@ -17,6 +17,9 @@ namespace PassionProject_chatMessenger.Controllers
         private static readonly HttpClient client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
+        /// <summary>
+        /// Constructors
+        /// </summary>
         static MessageController()
         {
             client = new HttpClient();
@@ -24,6 +27,10 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Message
+        /// <summary>
+        /// This function returns a view with a list of messages
+        /// </summary>
+        /// <returns>Returns a view with list of messages</returns>
         public ActionResult List()
         {
             string url = "List";
@@ -35,6 +42,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Message/Details/5
+        /// <summary>
+        /// This function is for getting details of a message on a view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns a view with message details</returns>
         public ActionResult Details(int id)
         {
             string url = "MessageData/FindMessage/" + id;
@@ -49,13 +61,21 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Message/Create
+        /// <summary>
+        /// This functions returns a view with create form for messages
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Message/Create
-
+        /// <summary>
+        /// This function calls api to add message to the database
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>Returns a view with updated list of messages</returns>
         [HttpPost]
         public ActionResult Create(Models.Message message)
         {
@@ -85,7 +105,10 @@ namespace PassionProject_chatMessenger.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        /// <summary>
+        /// This method returns a view in case an error occurs
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Error()
         {
 
@@ -93,6 +116,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Message/Edit/5
+        /// <summary>
+        /// This function is for fetching details of a message and sending them to a view
+        /// </summary>
+        /// <param name="id">id of target message</param>
+        /// <returns>Returns a view with update form and message data</returns>
         public ActionResult Edit(int id)
         {
             string url = "MessageData/FindMessage/" + id;
@@ -102,6 +130,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Message/Edit/5
+        /// <summary>
+        /// This function calls api to update a message with matching id
+        /// </summary>
+        /// <param name="id">target messageId</param>
+        /// <param name="message">form data</param>
+        /// <returns>Returns list of messages with updated message</returns>
         [HttpPost]
         public ActionResult Edit(int id, Message message)
         {
@@ -121,6 +155,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // GET: Message/Delete/5
+        /// <summary>
+        /// This function finds a message and returns a view to delete that message
+        /// </summary>
+        /// <param name="id">targer messageId</param>
+        /// <returns>Return a view with delete options</returns>
+        [Authorize]
         public ActionResult Delete(int id)
         {
             string url = "MessageData/FindMessage/" + id;
@@ -135,6 +175,12 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: Message/Delete/5
+        /// <summary>
+        /// This function calls api to delete a message from the database
+        /// </summary>
+        /// <param name="id">target messageId</param>
+        /// <param name="GroupId">target GroupId to return back to the group to display messages</param>
+        /// <returns>Return a group with delete message</returns>
         [HttpPost]
         public ActionResult DeleteConfirm(int id, int GroupId)
         {

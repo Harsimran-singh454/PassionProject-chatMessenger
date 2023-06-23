@@ -17,6 +17,10 @@ namespace PassionProject_chatMessenger.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/MessageData/List
+        /// <summary>
+        /// This Function is for listing all the messages
+        /// </summary>
+        /// <returns>All the messages in the datavase</returns>
         [HttpGet]
         [ResponseType(typeof(GroupDto))]
         public IEnumerable<MessageDto> List()
@@ -40,6 +44,11 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // GET: api/MessageData/ListMessagesForGroup/{group id}
+        /// <summary>
+        /// This function is used for fetching messages associated to a specific group with matching ID
+        /// </summary>
+        /// <param name="id">The Group Id</param>
+        /// <returns>Returns list of messages associated with the matching group</returns>
         [HttpGet]
         public IHttpActionResult ListMessagesForGroup(int id)
         {
@@ -59,6 +68,11 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // GET: api/MessageData/FindMessage/5
+        /// <summary>
+        /// This function is used for fetching the message with matching Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Returns details about a message</returns>
         [ResponseType(typeof(Message))]
         [HttpGet]
         public IHttpActionResult FindMessage(int id)
@@ -83,6 +97,12 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         //PUT: api/MessageData/updateMessage/5
+        /// <summary>
+        /// This Function is used for updating a message with matching Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="message"></param>
+        /// <returns>Uppdates the Message with matching Id</returns>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult updateMessage(int id, Message message)
@@ -119,6 +139,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: api/MessageData/addMessage
+        /// <summary>
+        /// This function adds a new message to the database
+        /// </summary>
+        /// <param name="message">This object holds the data passed from the form</param>
+        /// <returns>Creates a new message in the database</returns>
         [ResponseType(typeof(Message))]
         [HttpPost]
         public IHttpActionResult addMessage(Message message)
@@ -135,6 +160,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // DELETE: api/MessageData/DeleteMessage/5
+        /// <summary>
+        /// Finds the message matching with the Id passed an deletes it from the database
+        /// </summary>
+        /// <param name="id">the targeted MessageId</param>
+        /// <returns>Removes a message from the database</returns>
         [ResponseType(typeof(Message))]
         [HttpPost]
         public IHttpActionResult DeleteMessage(int id)

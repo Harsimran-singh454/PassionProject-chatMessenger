@@ -20,6 +20,11 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // GET: api/GroupsData/ListGroups
+
+        /// <summary>
+        /// This function is for fetching list of groups and messages associated with it
+        /// </summary>
+        /// <returns> Returns a list of groups in the database </returns>
         [HttpGet]
         [ResponseType(typeof(GroupDto))]
         public IEnumerable<GroupDto> ListGroups()
@@ -43,6 +48,12 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // GET: api/GroupsData/FindGroup/5
+
+        /// <summary>
+        /// This function is for finding a group in the database using its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Return details of a group with matching ID</returns>
         [ResponseType(typeof(Group))]
         [HttpGet]
         public IHttpActionResult FindGroup(int id)
@@ -69,6 +80,12 @@ namespace PassionProject_chatMessenger.Controllers
 
 
         // PUT: api/GroupsData/UpdateGroup/5
+        /// <summary>
+        /// This function is for updating the group with matching ID and data to be entered
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="group"></param>
+        /// <returns>Returns the updated group</returns>
         [ResponseType(typeof(void))]
         public IHttpActionResult UpdateGroup(int id, Group group)
         {
@@ -104,6 +121,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // POST: api/GroupsData/AddGroup
+        /// <summary>
+        /// This function is for adding a new group to the database
+        /// </summary>
+        /// <param name="group">This parameters holds the values passed fromo the form</param>
+        /// <returns></returns>
         [HttpPost]
         [ResponseType(typeof(Group))]
         public IHttpActionResult AddGroup(Group group)
@@ -120,6 +142,11 @@ namespace PassionProject_chatMessenger.Controllers
         }
 
         // DELETE: api/GroupsData/DeleteGroup/5
+        /// <summary>
+        /// This function is used for deleteing the group with matching ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Delets the group from the database</returns>
         [HttpPost]
         [ResponseType(typeof(Group))]
         public IHttpActionResult DeleteGroup(int id)
